@@ -194,12 +194,12 @@ canvas {
     margin-top: 10px;
     max-height: 55vh;
     overflow-x: hidden;
-    overflow-y: scroll;
+    overflow-y: auto;
 }
 .desktop-designer-height{
     max-height: 80vh;
     overflow-x: hidden;
-    overflow-y: scroll;
+    overflow-y: auto;
 }
 
 .left-padding{
