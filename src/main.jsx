@@ -22,6 +22,8 @@ const config = {
 
 ReactDOM.createRoot(document.getElementById('root')).render(<React.StrictMode>
     <FlagProvider config={config}>
-        <App/>
+        <div className="container-fluid">
+            <App/>
+        </div>
     </FlagProvider>
 </React.StrictMode>,)

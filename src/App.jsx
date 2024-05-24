@@ -46,7 +46,7 @@ function App() {
         flagsReady ?
             releaseToggle ? <UserContext.Provider value={user}>
                 <RouterProvider router={router}/>
-                <select value={user?.name || ""}
+                <select className="form-control" value={user?.name || ""}
                         onChange={event => setUser(getUser(event.target.value))}>
                     <option value="">No user</option>
                     <option value="sheldon">Sheldon</option>

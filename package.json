@@ -11,10 +11,12 @@
   },
   "dependencies": {
     "@unleash/proxy-client-react": "^4.2.2",
+    "bootstrap": "^5.3.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.23.1",
     "react-world-flags": "^1.6.0",
+    "sass": "^1.77.2",
     "unleash-proxy-client": "^3.3.2"
   },
   "devDependencies": {
