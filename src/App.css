@@ -38,14 +38,6 @@
     word-wrap: unset;
 }
 
-.layer input, .layers label {
-    display: flex;
-}
-
-.layer .input {
-    text-align: end;
-}
-
 .layer label {
     text-align: start;
 }
@@ -181,35 +173,36 @@ canvas {
     border: 2px solid black;
 }
 
-.center{
+.center {
     display: flex;
     align-items: center;
     flex-direction: column;
 }
 
-.mobile-flag-height{
+.mobile-flag-height {
 }
 
-.mobile-designer-height{
+.mobile-designer-height {
     margin-top: 10px;
     max-height: 55vh;
     overflow-x: hidden;
     overflow-y: auto;
 }
-.desktop-designer-height{
+
+.desktop-designer-height {
     max-height: 80vh;
     overflow-x: hidden;
     overflow-y: auto;
 }
 
-.left-padding{
+.left-padding {
     padding-left: 5px;
 }
 
-.right-padding{
+.right-padding {
     padding-right: 5px;
 }
 
-.top-padding{
+.top-padding {
     padding-top: 10px;
 }

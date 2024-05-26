@@ -136,7 +136,7 @@ function FlagDesigner({flag}) {
                                    onChange={event => setLayers(layers => {
                                        return [...layers.slice(0, index), {
                                            ...layer,
-                                           colour: event.target.value
+                                           flyColour: event.target.value
                                        }, ...layers.slice(index + 1)]
                                    })}/>
                         </div>
@@ -153,7 +153,7 @@ function FlagDesigner({flag}) {
                         </div>
                         <div className="field">
                             <label htmlFor="scale">Scale</label>
-                            <input id="scale" type="range" min=".5" max="2" step=".1" value={layer.scale}
+                            <input className="w-lg-100 w-md-100 w-50" id="scale" type="range" min=".5" max="2" step=".01" value={layer.scale}
                                    onChange={event => setLayers(layers => {
                                        return [...layers.slice(0, index), {
                                            ...layer,
