@@ -18,7 +18,7 @@ export default function MyFlagList() {
         <main className="flag-list">{
             flags.map(flag => <div key={flag.id}>
                 <FlagCanvas flag={flag}/>
-                <p>{flag.id}</p>
+                <p>{flag.name}</p>
                 <button onClick={() => {
                     navigate(`/editflag/${flag.id}`)
                 }}>Edit

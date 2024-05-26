@@ -20,7 +20,7 @@ export default function FlagList() {
         <main className="flag-list">
             {flags.map((flag, index) => <div key={index}>
                 <FlagCanvas flag={flag}/>
-                <p>{flag.id}</p>
+                <p>{flag.name}</p>
                 {like_flag_enabled && <>
                     <span>{flag.likeCount ? flag.likeCount : 'No'} like{flag.likeCount !== 1 && 's'}</span>
                     <button
