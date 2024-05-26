@@ -13,8 +13,8 @@ export default function MyFlagList() {
     }, [user]);
 
     return <>
-        <h1>All the flags!</h1>
-        <button onClick={() => navigate('/')}>Make a new flag</button>
+        <h1 className="text-center">My flags!</h1>
+        <button className="m-auto d-block" onClick={() => navigate('/')}>Make a new flag</button>
         <main className="flag-list">{
             flags.map(flag => <div key={flag.id}>
                 <FlagCanvas flag={flag}/>
