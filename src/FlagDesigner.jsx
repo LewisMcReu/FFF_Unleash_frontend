@@ -240,22 +240,22 @@ function FlagDesigner({flag}) {
                         {renderBasicLayerSample('PER_FESS', PerFess)}
                         {renderBasicLayerSample('PER_BEND', PerBend)}
                         {renderBasicLayerSample('PER_BEND_SINISTER', PerBendSinister)}
-                        {renderBasicLayerSample('PALE', Pale)}
-                        {renderBasicLayerSample('FESS', Fess)}
-                        {renderBasicLayerSample('BEND', Bend)}
-                        {renderBasicLayerSample('BEND_SINISTER', BendSinister)}
-                        {renderBasicLayerSample('SIDE', Side)}
-                        {renderBasicLayerSample('SIDE_SINISTER', SideSinister)}
-                        {renderBasicLayerSample('CHIEF', Chief)}
-                        {renderBasicLayerSample('BASE', Base)}
+                        {renderBasicScalableLayerSample('PALE', Pale)}
+                        {renderBasicScalableLayerSample('FESS', Fess)}
+                        {renderBasicScalableLayerSample('BEND', Bend)}
+                        {renderBasicScalableLayerSample('BEND_SINISTER', BendSinister)}
+                        {renderBasicScalableLayerSample('SIDE', Side)}
+                        {renderBasicScalableLayerSample('SIDE_SINISTER', SideSinister)}
+                        {renderBasicScalableLayerSample('CHIEF', Chief)}
+                        {renderBasicScalableLayerSample('BASE', Base)}
                         {renderBasicLayerSample('PER_CROSS', PerCross)}
                         {renderBasicLayerSample('PER_SALTIRE', PerSaltire)}
-                        {renderBasicLayerSample('COUPED_CROSS', CoupedCross)}
-                        {renderBasicLayerSample('SYMMETRIC_CROSS', SymmetricCross)}
-                        {renderBasicLayerSample('NORDIC_CROSS', NordicCross)}
-                        {renderBasicLayerSample('SALTIRE', Saltire)}
-                        {renderBasicLayerSample('CANTON', Canton)}
-                        {renderBasicLayerSample('BORDURE', Bordure)}
+                        {renderBasicScalableLayerSample('COUPED_CROSS', CoupedCross)}
+                        {renderBasicScalableLayerSample('SYMMETRIC_CROSS', SymmetricCross)}
+                        {renderBasicScalableLayerSample('NORDIC_CROSS', NordicCross)}
+                        {renderBasicScalableLayerSample('SALTIRE', Saltire)}
+                        {renderBasicScalableLayerSample('CANTON', Canton)}
+                        {renderBasicScalableLayerSample('BORDURE', Bordure)}
                         {renderBasicLayerSample('PILE', Pile)}
                         {renderBasicLayerSample('PILE_THROUGHOUT', PileThroughout)}
                         {renderBasicLayerSample('STRIPES', Stripes)}
