@@ -46,6 +46,7 @@ function FlagDesigner({flag}) {
     const updateEnabled = useFlag(FeatureFlags.UPDATE_FLAG);
 
     const [layers, setLayers] = useState(flag?.layers || []);
+    const [name, setName] = useState();
 
     const user = useContext(UserContext);
 
@@ -56,6 +57,15 @@ function FlagDesigner({flag}) {
             '@type': 'basic',
             type,
             colour: randomColor()
+        }]))
+    }
+
+    function renderBasicScalableLayerSample(type, SampleComponent) {
+        return renderLayerSample(mapToName(type), SampleComponent, () => setLayers([...layers, {
+            '@type': 'basic-scalable',
+            type,
+            colour: randomColor(),
+            scale: 1
         }]))
     }
 
@@ -126,7 +136,28 @@ function FlagDesigner({flag}) {
                                    onChange={event => setLayers(layers => {
                                        return [...layers.slice(0, index), {
                                            ...layer,
-                                           flyColour: event.target.value
+                                           colour: event.target.value
+                                       }, ...layers.slice(index + 1)]
+                                   })}/>
+                        </div>
+                    </> : layer['@type'] === 'basic-scalable' ? <>
+                        <div className="field">
+                            <label htmlFor="colour">Colour</label>
+                            <input id="colour" type={colourPicker ? 'color' : 'text'} value={layer.colour}
+                                   onChange={event => setLayers(layers => {
+                                       return [...layers.slice(0, index), {
+                                           ...layer,
+                                           colour: event.target.value
+                                       }, ...layers.slice(index + 1)]
+                                   })}/>
+                        </div>
+                        <div className="field">
+                            <label htmlFor="scale">Scale</label>
+                            <input id="scale" type="range" min=".5" max="2" step=".1" value={layer.scale}
+                                   onChange={event => setLayers(layers => {
+                                       return [...layers.slice(0, index), {
+                                           ...layer,
+                                           scale: event.target.value
                                        }, ...layers.slice(index + 1)]
                                    })}/>
                         </div>
@@ -172,22 +203,22 @@ function FlagDesigner({flag}) {
                         {renderBasicLayerSample('PER_FESS', PerFess)}
                         {renderBasicLayerSample('PER_BEND', PerBend)}
                         {renderBasicLayerSample('PER_BEND_SINISTER', PerBendSinister)}
-                        {renderBasicLayerSample('PALE', Pale)}
-                        {renderBasicLayerSample('FESS', Fess)}
-                        {renderBasicLayerSample('BEND', Bend)}
-                        {renderBasicLayerSample('BEND_SINISTER', BendSinister)}
-                        {renderBasicLayerSample('SIDE', Side)}
-                        {renderBasicLayerSample('SIDE_SINISTER', SideSinister)}
-                        {renderBasicLayerSample('CHIEF', Chief)}
-                        {renderBasicLayerSample('BASE', Base)}
+                        {renderBasicScalableLayerSample('PALE', Pale)}
+                        {renderBasicScalableLayerSample('FESS', Fess)}
+                        {renderBasicScalableLayerSample('BEND', Bend)}
+                        {renderBasicScalableLayerSample('BEND_SINISTER', BendSinister)}
+                        {renderBasicScalableLayerSample('SIDE', Side)}
+                        {renderBasicScalableLayerSample('SIDE_SINISTER', SideSinister)}
+                        {renderBasicScalableLayerSample('CHIEF', Chief)}
+                        {renderBasicScalableLayerSample('BASE', Base)}
                         {renderBasicLayerSample('PER_CROSS', PerCross)}
                         {renderBasicLayerSample('PER_SALTIRE', PerSaltire)}
-                        {renderBasicLayerSample('COUPED_CROSS', CoupedCross)}
-                        {renderBasicLayerSample('SYMMETRIC_CROSS', SymmetricCross)}
-                        {renderBasicLayerSample('NORDIC_CROSS', NordicCross)}
-                        {renderBasicLayerSample('SALTIRE', Saltire)}
-                        {renderBasicLayerSample('CANTON', Canton)}
-                        {renderBasicLayerSample('BORDURE', Bordure)}
+                        {renderBasicScalableLayerSample('COUPED_CROSS', CoupedCross)}
+                        {renderBasicScalableLayerSample('SYMMETRIC_CROSS', SymmetricCross)}
+                        {renderBasicScalableLayerSample('NORDIC_CROSS', NordicCross)}
+                        {renderBasicScalableLayerSample('SALTIRE', Saltire)}
+                        {renderBasicScalableLayerSample('CANTON', Canton)}
+                        {renderBasicScalableLayerSample('BORDURE', Bordure)}
                         {renderBasicLayerSample('PILE', Pile)}
                         {renderBasicLayerSample('PILE_THROUGHOUT', PileThroughout)}
                         {renderBasicLayerSample('STRIPES', Stripes)}
@@ -240,28 +271,31 @@ function FlagDesigner({flag}) {
                     )}
                 </div>
                 <div className="col-12 center top-padding">
-                    {user && (updateEnabled || saveEnabled) && <button onClick={() => {
-                        if (flag?.id) {
-                            fetch(`http://localhost:8080/flags/${flag.id}`, {
-                                method: "PUT",
-                                headers: {
-                                    "Content-Type": "application/json",
-                                    "Authorization": "Basic " + user.token
-                                },
-                                body: JSON.stringify({...flag, layers}),
-                            }).then(() => navigate('/mylist'));
-                        } else {
-                            fetch("http://localhost:8080/flags", {
-                                method: "POST",
-                                headers: {
-                                    "Content-Type": "application/json",
-                                    "Authorization": "Basic " + user.token
-                                },
-                                body: JSON.stringify({...flag, layers, name: 'Not a real flag!'}),
-                            }).then(() => navigate('/mylist'));
-                        }
-                    }}>Save
-                    </button>}
+                    {user && (updateEnabled || saveEnabled) && <>
+                        {!flag?.id && <input type="text" value={name} onChange={event => setName(event.target.value)}/>}
+                        <button onClick={() => {
+                            if (flag?.id) {
+                                fetch(import.meta.env.VITE_BACKEND_URL + `/flags/${flag.id}`, {
+                                    method: "PUT",
+                                    headers: {
+                                        "Content-Type": "application/json",
+                                        "Authorization": "Basic " + user.token
+                                    },
+                                    body: JSON.stringify({...flag, layers}),
+                                }).then(() => navigate('/mylist'));
+                            } else {
+                                fetch(import.meta.env.VITE_BACKEND_URL + "/flags", {
+                                    method: "POST",
+                                    headers: {
+                                        "Content-Type": "application/json",
+                                        "Authorization": "Basic " + user.token
+                                    },
+                                    body: JSON.stringify({...flag, layers, name}),
+                                }).then(() => navigate('/mylist'));
+                            }
+                        }}>Save
+                        </button>
+                    </>}
                 </div>
             </div>
         </>

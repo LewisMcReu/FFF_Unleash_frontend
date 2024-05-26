@@ -11,7 +11,7 @@ export default function FlagList() {
     const like_flag_enabled = useFlag(FeatureFlags.LIKE_FLAG);
     const navigate = useNavigate();
     useEffect(() => {
-        fetch("http://localhost:8080/flags").then(response => response.json().then(body => setFlags(body)));
+        fetch(import.meta.env.VITE_BACKEND_URL+ "/flags").then(response => response.json().then(body => setFlags(body)));
     }, []);
 
     return <>
@@ -24,7 +24,7 @@ export default function FlagList() {
                 {like_flag_enabled && <>
                     <span>{flag.likeCount ? flag.likeCount : 'No'} like{flag.likeCount !== 1 && 's'}</span>
                     <button
-                        onClick={() => fetch(`http://localhost:8080/flags/${flag.id}/like`, {method: 'POST'}).then(() => {
+                        onClick={() => fetch(import.meta.env.VITE_BACKEND_URL+ `/flags/${flag.id}/like`, {method: 'POST'}).then(() => {
                             {
                                 flag.likeCount = flag.likeCount + 1;
                                 setFlags(flags => [...flags.slice(0, index), flag, ...flags.slice(index + 1)]);

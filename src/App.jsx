@@ -27,7 +27,7 @@ const router = createBrowserRouter([
         path: "/editflag/:id",
         element: <EditFlag/>,
         loader: ({params}) => {
-            return fetch(`http://localhost:8080/flags/${params.id}`);
+            return fetch(import.meta.env.VITE_BACKEND_URL + `/flags/${params.id}`);
         },
 
     }

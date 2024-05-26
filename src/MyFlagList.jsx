@@ -9,7 +9,7 @@ export default function MyFlagList() {
     const navigate = useNavigate();
 
     useEffect(() => {
-        fetch(`http://localhost:8080/flags?user=${user?.name}`).then(response => response.json().then(body => setFlags(body)));
+        fetch(import.meta.env.VITE_BACKEND_URL+ `/flags?user=${user?.name}`).then(response => response.json().then(body => setFlags(body)));
     }, [user]);
 
     return <>
