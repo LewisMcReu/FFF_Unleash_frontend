@@ -201,6 +201,13 @@ export function Star() {
     </svg>;
 }
 
+export function Circle() {
+    return <svg viewBox="0 0 9 6">
+        <rect width="100%" height="100%" fill="gray"/>
+        <circle cx="4.5" cy="3" r="1.5" fill="red"/>
+    </svg>;
+}
+
 export function MapleLeaf() {
     return <svg viewBox="0 0 9 6">
         <rect width="100%" height="100%" fill="gray"/>

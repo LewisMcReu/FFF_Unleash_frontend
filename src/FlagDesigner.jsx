@@ -8,6 +8,7 @@ import {
     Bordure,
     Canton,
     Chief,
+    Circle,
     CoupedCross,
     Fess,
     Field,
@@ -83,6 +84,7 @@ function FlagDesigner({flag}) {
         return renderLayerSample(mapToName(emblem), SampleComponent, () => setLayers([...layers, {
             '@type': 'charge',
             emblem,
+            scale: 1,
             colour: randomColor()
         }]));
     }
@@ -153,7 +155,8 @@ function FlagDesigner({flag}) {
                         </div>
                         <div className="field">
                             <label htmlFor="scale">Scale</label>
-                            <input className="w-lg-100 w-md-100 w-50" id="scale" type="range" min=".5" max="2" step=".01" value={layer.scale}
+                            <input className="w-50" id="scale" type="range" min=".5" max="2"
+                                   step=".01" value={layer.scale}
                                    onChange={event => setLayers(layers => {
                                        return [...layers.slice(0, index), {
                                            ...layer,
@@ -169,6 +172,17 @@ function FlagDesigner({flag}) {
                                        return [...layers.slice(0, index), {
                                            ...layer,
                                            colour: event.target.value
+                                       }, ...layers.slice(index + 1)]
+                                   })}/>
+                        </div>
+                        <div className="field">
+                            <label htmlFor="scale">Scale</label>
+                            <input className="w-50" id="scale" type="range" min=".5" max="2"
+                                   step=".01" value={layer.scale}
+                                   onChange={event => setLayers(layers => {
+                                       return [...layers.slice(0, index), {
+                                           ...layer,
+                                           scale: event.target.value
                                        }, ...layers.slice(index + 1)]
                                    })}/>
                         </div>
@@ -228,6 +242,7 @@ function FlagDesigner({flag}) {
                     {chargeEnabled && (
                         <Accordion title="Charge">
                             {renderChargeLayerSample('STAR', Star)}
+                            {renderChargeLayerSample('CIRCLE', Circle)}
                             {renderChargeLayerSample('MAPLE_LEAF', MapleLeaf)}
                             {nasaEnabled && renderChargeLayerSample('NASA', NASA)}
                         </Accordion>
@@ -265,6 +280,7 @@ function FlagDesigner({flag}) {
                     {chargeEnabled && (
                         <Accordion title="Charge">
                             {renderChargeLayerSample('STAR', Star)}
+                            {renderChargeLayerSample('CIRCLE', Circle)}
                             {renderChargeLayerSample('MAPLE_LEAF', MapleLeaf)}
                             {nasaEnabled && renderChargeLayerSample('NASA', NASA)}
                         </Accordion>

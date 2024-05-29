@@ -164,12 +164,19 @@ function drawLayerOnCanvas(context, layer) {
             context.fillRect(0, bandHeight * 2, width, bandHeight);
         }
     } else if (layer['@type'] === 'charge') {
+        const scale = layer['scale'];
         context.fillStyle = layer['colour'];
         if (layer['emblem'] === 'STAR') {
             //m 56 237 l 74 -228 l 74 228 L 10 96 h 240
             const path = new Path2D('M -74 114 L 0 -114 L 74 114 L -120 -27 H 120');
             context.setTransform(.5, 0, 0, .5, width / 2, height / 2);
             context.fill(path);
+        } else if (layer['emblem'] === 'CIRCLE') {
+            context.beginPath();
+            const radius = height / 4 * scale;
+            console.log(radius)
+            context.arc(width / 2, height / 2, radius, 0, 2 * Math.PI);
+            context.fill();
         } else if (layer['emblem'] === 'MAPLE_LEAF') {
             const path = new Path2D('m-90 2030 45-863a95 95 0 0 0-111-98l-859 151 116-320a65 65 0 0 0-20-73l-941-762 212-99a65 65 0 0 0 34-79l-186-572 542 115a65 65 0 0 0 73-38l105-247 423 454a65 65 0 0 0 111-57l-204-1052 327 189a65 65 0 0 0 91-27l332-652 332 652a65 65 0 0 0 91 27l327-189-204 1052a65 65 0 0 0 111 57l423-454 105 247a65 65 0 0 0 73 38l542-115-186 572a65 65 0 0 0 34 79l212 99-941 762a65 65 0 0 0-20 73l116 320-859-151a95 95 0 0 0-111 98l45 863z');
             context.setTransform(.03, 0, 0, .03, width / 2, height / 2);
