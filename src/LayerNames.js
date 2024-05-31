@@ -53,6 +53,8 @@ export default function map(name) {
         return 'Horizontal Triband'
     } else if (name === 'STAR') {
         return 'Star'
+    } else if (name === 'CIRCLE') {
+        return 'Circle'
     } else if (name === 'MAPLE_LEAF') {
         return 'Maple leaf'
     } else if (name === 'NASA') {
